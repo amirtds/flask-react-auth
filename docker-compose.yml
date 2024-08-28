@@ -1,14 +1,12 @@
-version: '3.8'
-
 services:
 
   api:
     build:
-      context: .
+      context: ./services/users
       dockerfile: Dockerfile
     entrypoint: ['/usr/src/app/entrypoint.sh']
     volumes:
-      - '.:/usr/src/app'
+      - './services/users:/usr/src/app'
     ports:
       - 5004:5000
     environment:
@@ -22,10 +20,26 @@ services:
 
   api-db:
     build:
-      context: ./src/db
+      context: ./services/users/src/db
       dockerfile: Dockerfile
     expose:
       - 5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
+  client:
+    stdin_open: true
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile
+    volumes:
+      - './services/client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - 3007:5173
+    environment:
+      - NODE_ENV=development
+      - VITE_API_SERVICE_URL=${VITE_API_SERVICE_URL}
+    depends_on:
+      - api
