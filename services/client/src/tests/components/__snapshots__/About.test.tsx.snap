@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1cqsgvl"
+  >
+    <div
+      class="chakra-stack css-1m5qyve"
+    >
+      <h1
+        class="chakra-heading css-0"
+      >
+        About
+      </h1>
+      <hr
+        aria-orientation="horizontal"
+        class="chakra-divider css-1upb9tn"
+      />
+      <p
+        class="chakra-text content css-1ezsviu"
+      >
+        Add something relevant here.
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

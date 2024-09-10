@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
+import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Users from "./components/Users";
 import AddUser from "./components/AddUser";
+import About from "./components/About";
 
 interface User {
   created_date: string;
@@ -38,8 +40,18 @@ const App = () => {
 
   return (
     <ChakraProvider>
-      <AddUser addUserToList={addUserToList} />
-      <Users users={users} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <AddUser addUserToList={addUserToList} />
+              <Users users={users} />
+            </>
+          }
+        />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </ChakraProvider>
   );
 };
