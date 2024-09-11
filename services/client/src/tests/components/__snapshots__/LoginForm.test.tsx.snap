@@ -1,0 +1,83 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LoginForm renders properly 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1iq6qq8"
+  >
+    <h1
+      class="chakra-heading css-ov0hf1"
+    >
+      Log In
+    </h1>
+    <form>
+      <div
+        class="chakra-stack css-1xb2ccj"
+      >
+        <div
+          class="chakra-form-control css-0"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="email"
+            id="email-label"
+          >
+            Email
+            <span
+              aria-hidden="true"
+              class="chakra-form__required-indicator css-0"
+              role="presentation"
+            >
+              *
+            </span>
+          </label>
+          <input
+            aria-required="true"
+            class="chakra-input css-0"
+            id="email"
+            name="email"
+            required=""
+            type="email"
+            value=""
+          />
+        </div>
+        <div
+          class="chakra-form-control css-0"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="password"
+            id="password-label"
+          >
+            Password
+            <span
+              aria-hidden="true"
+              class="chakra-form__required-indicator css-0"
+              role="presentation"
+            >
+              *
+            </span>
+          </label>
+          <input
+            aria-required="true"
+            class="chakra-input css-0"
+            id="password"
+            name="password"
+            required=""
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          class="chakra-button css-l01cow"
+          type="submit"
+        >
+          Log In
+        </button>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;

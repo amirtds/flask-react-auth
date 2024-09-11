@@ -5,6 +5,9 @@ import axios from "axios";
 import Users from "./components/Users";
 import AddUser from "./components/AddUser";
 import About from "./components/About";
+import NavBar from "./components/NavBar";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
 
 interface User {
   created_date: string;
@@ -15,6 +18,7 @@ interface User {
 
 const App = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [title] = useState("TestDriven.io");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -40,6 +44,7 @@ const App = () => {
 
   return (
     <ChakraProvider>
+      <NavBar title={title} />
       <Routes>
         <Route
           path="/"
@@ -51,6 +56,11 @@ const App = () => {
           }
         />
         <Route path="/about" element={<About />} />
+        <Route
+          path="/register"
+          element={<RegisterForm onSubmit={() => {}} />}
+        />
+        <Route path="/login" element={<LoginForm onSubmit={() => {}} />} />
       </Routes>
     </ChakraProvider>
   );
