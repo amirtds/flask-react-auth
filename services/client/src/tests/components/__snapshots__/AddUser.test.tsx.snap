@@ -1,0 +1,119 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AddUser > renders 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1cqsgvl"
+  >
+    <div
+      class="css-yhr2jk"
+    >
+      <h2
+        class="chakra-heading css-735bf1"
+      >
+        Register a User
+      </h2>
+    </div>
+    <form
+      action="#"
+    >
+      <div
+        class="css-cme2f9"
+      >
+        <div
+          class="chakra-form-control css-jmbq56"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-1smud82"
+            for="input-username"
+            id="field-:r3:-label"
+          >
+            Username
+            <span
+              aria-hidden="true"
+              class="chakra-form__required-indicator css-0"
+              role="presentation"
+            >
+              *
+            </span>
+          </label>
+          <input
+            aria-required="true"
+            class="chakra-input css-0"
+            id="input-username"
+            name="username"
+            placeholder="Enter a username"
+            required=""
+            value=""
+          />
+        </div>
+        <div
+          class="chakra-form-control css-jmbq56"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-1smud82"
+            for="input-email"
+            id="field-:r4:-label"
+          >
+            Email
+            <span
+              aria-hidden="true"
+              class="chakra-form__required-indicator css-0"
+              role="presentation"
+            >
+              *
+            </span>
+          </label>
+          <input
+            aria-required="true"
+            class="chakra-input css-0"
+            id="input-email"
+            name="email"
+            placeholder="Enter an email address"
+            required=""
+            type="email"
+            value=""
+          />
+        </div>
+        <div
+          class="chakra-form-control css-jmbq56"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-1smud82"
+            for="input-password"
+            id="field-:r5:-label"
+          >
+            Password
+            <span
+              aria-hidden="true"
+              class="chakra-form__required-indicator css-0"
+              role="presentation"
+            >
+              *
+            </span>
+          </label>
+          <input
+            aria-required="true"
+            class="chakra-input css-0"
+            id="input-password"
+            name="password"
+            placeholder="Enter a password"
+            required=""
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          class="chakra-button css-lbflu4"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;
