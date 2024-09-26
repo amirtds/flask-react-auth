@@ -18,7 +18,7 @@ exports[`NavBar renders properly 1`] = `
             class="chakra-link css-3yqgza"
             href="/"
           >
-            Test Title
+            Hello, World!
           </a>
         </h1>
       </div>
@@ -30,15 +30,15 @@ exports[`NavBar renders properly 1`] = `
       >
         <a
           class="chakra-link css-b80v07"
-          href="/status"
-        >
-          User Status
-        </a>
-        <a
-          class="chakra-link css-b80v07"
           href="/about"
         >
           About
+        </a>
+        <a
+          class="chakra-link css-b80v07"
+          href="/status"
+        >
+          User Status
         </a>
         <a
           class="chakra-link css-b80v07"
@@ -51,12 +51,6 @@ exports[`NavBar renders properly 1`] = `
           href="/login"
         >
           Log In
-        </a>
-        <a
-          class="chakra-link css-kbn7if"
-          href="/logout"
-        >
-          Log Out
         </a>
       </div>
       <button
@@ -86,15 +80,15 @@ exports[`NavBar renders properly 1`] = `
       >
         <a
           class="chakra-link css-b80v07"
-          href="/status"
-        >
-          User Status
-        </a>
-        <a
-          class="chakra-link css-b80v07"
           href="/about"
         >
           About
+        </a>
+        <a
+          class="chakra-link css-b80v07"
+          href="/status"
+        >
+          User Status
         </a>
         <a
           class="chakra-link css-b80v07"
@@ -107,12 +101,6 @@ exports[`NavBar renders properly 1`] = `
           href="/login"
         >
           Log In
-        </a>
-        <a
-          class="chakra-link css-kbn7if"
-          href="/logout"
-        >
-          Log Out
         </a>
       </div>
     </div>

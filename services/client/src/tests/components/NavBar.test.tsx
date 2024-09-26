@@ -6,10 +6,16 @@ import "@testing-library/jest-dom/vitest";
 
 import NavBar from "../../components/NavBar";
 
+const mockProps = {
+  title: "Hello, World!",
+  logoutUser: () => {},
+  isAuthenticated: () => false,
+};
+
 it("NavBar renders without crashing", () => {
   render(
     <Router>
-      <NavBar title="Hello, World!" />
+      <NavBar {...mockProps} />
     </Router>,
   );
 
@@ -22,7 +28,7 @@ it("NavBar renders without crashing", () => {
 it("NavBar contains correct navigation links", () => {
   render(
     <Router>
-      <NavBar title="Test Title" />
+      <NavBar {...mockProps} />
     </Router>,
   );
 
@@ -31,7 +37,6 @@ it("NavBar contains correct navigation links", () => {
     { text: "About", href: "/about" },
     { text: "Register", href: "/register" },
     { text: "Log In", href: "/login" },
-    { text: "Log Out", href: "/logout" },
   ];
 
   links.forEach((link) => {
@@ -44,7 +49,7 @@ it("NavBar contains correct navigation links", () => {
 it("NavBar renders properly", () => {
   const { asFragment } = render(
     <Router>
-      <NavBar title="Test Title" />
+      <NavBar {...mockProps} />
     </Router>,
   );
   expect(asFragment()).toMatchSnapshot();
