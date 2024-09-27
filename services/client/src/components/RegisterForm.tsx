@@ -13,6 +13,15 @@ import {
 } from "@chakra-ui/react";
 import { Navigate } from "react-router-dom";
 
+interface RegisterFormProps {
+  onSubmit: (values: {
+    username: string;
+    email: string;
+    password: string;
+  }) => Promise<void>;
+  isAuthenticated: () => boolean;
+}
+
 const validationSchema = z.object({
   username: z
     .string()
@@ -31,15 +40,6 @@ const validationSchema = z.object({
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type FormValues = z.infer<typeof validationSchema>;
 
-interface RegisterFormProps {
-  onSubmit: (values: {
-    username: string;
-    email: string;
-    password: string;
-  }) => Promise<void>;
-  isAuthenticated: () => boolean;
-}
-
 const RegisterForm: React.FC<RegisterFormProps> = ({
   onSubmit,
   isAuthenticated,
@@ -47,6 +47,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   if (isAuthenticated()) {
     return <Navigate to="/" replace />;
   }
+
   return (
     <Box maxWidth="400px" marginTop={10} margin="100px auto 0">
       <Heading as="h1" size="xl" textAlign="center" mb={6}>
@@ -58,10 +59,15 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           email: "",
           password: "",
         }}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          onSubmit(values);
-          resetForm();
-          setSubmitting(false);
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
+          try {
+            await onSubmit(values);
+            resetForm();
+          } catch (error) {
+            console.error("Registration failed:", error);
+          } finally {
+            setSubmitting(false);
+          }
         }}
         validate={(values) => {
           try {
@@ -86,7 +92,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
                       id="username"
                       placeholder="Enter a username"
                     />
-                    <FormErrorMessage>{errors.username}</FormErrorMessage>
+                    <FormErrorMessage data-testid="errors-username">
+                      {errors.username}
+                    </FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
@@ -100,7 +108,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
                       type="email"
                       placeholder="Enter an email address"
                     />
-                    <FormErrorMessage>{errors.email}</FormErrorMessage>
+                    <FormErrorMessage data-testid="errors-email">
+                      {errors.email}
+                    </FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
@@ -116,7 +126,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
                       type="password"
                       placeholder="Enter a password"
                     />
-                    <FormErrorMessage>{errors.password}</FormErrorMessage>
+                    <FormErrorMessage data-testid="errors-password">
+                      {errors.password}
+                    </FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
