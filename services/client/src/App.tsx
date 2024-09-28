@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import UserStatus from "./components/UserStatus";
+import Message from "./components/Message";
 
 interface User {
   created_date: string;
@@ -21,6 +22,10 @@ const App = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [title] = useState("TestDriven.io");
   const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [messageType, setMessageType] = useState<
+    "info" | "warning" | "success" | "error" | null
+  >(null);
+  const [messageText, setMessageText] = useState<string | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -30,9 +35,32 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Add a test message when the component mounts
+  useEffect(() => {
+    createMessage("info", "Welcome to the application!");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Function to add new user to the users state
   const addUserToList = (newUser: User) => {
     setUsers((prevUsers) => [...prevUsers, newUser]);
+    createMessage("success", "User added successfully."); // Display success message
+  };
+
+  const clearMessage = () => {
+    setMessageType(null);
+    setMessageText(null);
+  };
+
+  const createMessage = (
+    type: "info" | "warning" | "success" | "error",
+    text: string,
+  ) => {
+    setMessageType(type);
+    setMessageText(text);
+    setTimeout(() => {
+      clearMessage();
+    }, 3000);
   };
 
   const fetchUsers = async () => {
@@ -57,8 +85,13 @@ const App = () => {
       const url = `${import.meta.env.VITE_API_SERVICE_URL}/auth/register`;
       const response = await axios.post(url, data);
       console.log(response.data);
+      createMessage("success", "Registration successful! You can now log in."); // Display success message
     } catch (err) {
       console.log(err);
+      createMessage(
+        "error",
+        "Registration failed. The user might already exist.",
+      ); // Display error message
     }
   };
 
@@ -69,11 +102,14 @@ const App = () => {
     try {
       const url = `${import.meta.env.VITE_API_SERVICE_URL}/auth/login`;
       const response = await axios.post(url, data);
+      console.log(response.data);
       setAccessToken(response.data.access_token);
       window.localStorage.setItem("refreshToken", response.data.refresh_token);
-      await fetchUsers(); // Fetch users after successful login
+      await fetchUsers();
+      createMessage("success", "Login successful!"); // Display success message
     } catch (err) {
       console.log(err);
+      createMessage("error", "Login failed. Please check your credentials."); // Display error message
     }
   };
 
@@ -84,6 +120,7 @@ const App = () => {
   const logoutUser = () => {
     setAccessToken(null);
     window.localStorage.removeItem("refreshToken");
+    createMessage("info", "You have been logged out."); // Display success message
   };
 
   const validRefresh = async () => {
@@ -118,6 +155,13 @@ const App = () => {
         logoutUser={logoutUser}
         isAuthenticated={isAuthenticated}
       />
+      {messageType && messageText && (
+        <Message
+          messageType={messageType}
+          messageText={messageText}
+          onClose={clearMessage} // Make sure this is passed
+        />
+      )}
       <Routes>
         <Route
           path="/"
