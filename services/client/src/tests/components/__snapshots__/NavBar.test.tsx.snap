@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`NavBar renders properly 1`] = `
+exports[`NavBar > NavBar renders properly 1`] = `
 <DocumentFragment>
   <div
     class="css-tqkzpo"
@@ -33,12 +33,6 @@ exports[`NavBar renders properly 1`] = `
           href="/about"
         >
           About
-        </a>
-        <a
-          class="chakra-link css-b80v07"
-          href="/status"
-        >
-          User Status
         </a>
         <a
           class="chakra-link css-b80v07"
@@ -83,12 +77,6 @@ exports[`NavBar renders properly 1`] = `
           href="/about"
         >
           About
-        </a>
-        <a
-          class="chakra-link css-b80v07"
-          href="/status"
-        >
-          User Status
         </a>
         <a
           class="chakra-link css-b80v07"

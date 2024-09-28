@@ -8,6 +8,7 @@ import About from "./components/About";
 import NavBar from "./components/NavBar";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
+import UserStatus from "./components/UserStatus";
 
 interface User {
   created_date: string;
@@ -26,11 +27,25 @@ const App = () => {
       await validRefresh();
     };
     checkAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Function to add new user to the users state
   const addUserToList = (newUser: User) => {
     setUsers((prevUsers) => [...prevUsers, newUser]);
+  };
+
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_SERVICE_URL}/users`,
+      );
+      if (response.status === 200) {
+        setUsers(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
   };
 
   const handleRegisterFormSubmit = async (data: {
@@ -54,7 +69,6 @@ const App = () => {
     try {
       const url = `${import.meta.env.VITE_API_SERVICE_URL}/auth/login`;
       const response = await axios.post(url, data);
-      console.log(response.data);
       setAccessToken(response.data.access_token);
       window.localStorage.setItem("refreshToken", response.data.refresh_token);
       await fetchUsers(); // Fetch users after successful login
@@ -129,6 +143,15 @@ const App = () => {
           element={
             <LoginForm
               onSubmit={handleLoginFormSubmit}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+        <Route
+          path="/status"
+          element={
+            <UserStatus
+              accessToken={accessToken || ""}
               isAuthenticated={isAuthenticated}
             />
           }
