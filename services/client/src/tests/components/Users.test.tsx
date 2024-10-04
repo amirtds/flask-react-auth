@@ -1,12 +1,26 @@
 import React from "react";
-import { it, expect, describe } from "vitest";
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/vitest";
+import { it, expect, describe, vi, afterEach } from "vitest";
+import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import Users from "../../components/Users";
+import "@testing-library/jest-dom/vitest";
 
 describe("Users", () => {
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
+  });
+  const mockOnAddUser = vi.fn();
+  const mockRemoveUser = vi.fn();
+
   it("Should render no registered users when there are no users passed to the component", () => {
-    render(<Users users={[]} />);
+    render(
+      <Users
+        users={[]}
+        onAddUser={mockOnAddUser}
+        removeUser={mockRemoveUser}
+        isAuthenticated={false}
+      />,
+    );
     const message = screen.getByText(/no registered users/i);
     expect(message).toBeTruthy();
   });
@@ -26,7 +40,14 @@ describe("Users", () => {
         created_date: "2024-08-18",
       },
     ];
-    render(<Users users={mockUsers} />);
+    render(
+      <Users
+        users={mockUsers}
+        onAddUser={mockOnAddUser}
+        removeUser={mockRemoveUser}
+        isAuthenticated={true}
+      />,
+    );
 
     // Assert that the user details are correctly rendered
     const userOne = screen.getByText("john_doe");
@@ -40,5 +61,45 @@ describe("Users", () => {
 
     expect(emailOne).toBeInTheDocument();
     expect(emailTwo).toBeInTheDocument();
+
+    // Check for Delete buttons
+    const deleteButtons = screen.getAllByText("Delete");
+    expect(deleteButtons).toHaveLength(2);
+  });
+
+  it("Should call onAddUser when Add User button is clicked", () => {
+    render(
+      <Users
+        users={[]}
+        onAddUser={mockOnAddUser}
+        removeUser={mockRemoveUser}
+        isAuthenticated={true}
+      />,
+    );
+    const addButton = screen.getByText("Add User");
+    fireEvent.click(addButton);
+    expect(mockOnAddUser).toHaveBeenCalled();
+  });
+
+  it("Should call removeUser when Delete button is clicked", () => {
+    const mockUsers = [
+      {
+        id: 1,
+        username: "john_doe",
+        email: "john@example.com",
+        created_date: "2024-08-19",
+      },
+    ];
+    render(
+      <Users
+        users={mockUsers}
+        onAddUser={mockOnAddUser}
+        removeUser={mockRemoveUser}
+        isAuthenticated={true}
+      />,
+    );
+    const deleteButton = screen.getByText("Delete");
+    fireEvent.click(deleteButton);
+    expect(mockRemoveUser).toHaveBeenCalledWith(1);
   });
 });

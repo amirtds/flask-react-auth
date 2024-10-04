@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, useDisclosure } from "@chakra-ui/react";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Users from "./components/Users";
-import AddUser from "./components/AddUser";
 import About from "./components/About";
 import NavBar from "./components/NavBar";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import UserStatus from "./components/UserStatus";
 import Message from "./components/Message";
+import AddUserModal from "./components/AddUserModal";
 
 interface User {
   created_date: string;
@@ -26,6 +26,7 @@ const App = () => {
     "info" | "warning" | "success" | "error" | null
   >(null);
   const [messageText, setMessageText] = useState<string | null>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -41,10 +42,41 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Function to add new user to the users state
-  const addUserToList = (newUser: User) => {
-    setUsers((prevUsers) => [...prevUsers, newUser]);
-    createMessage("success", "User added successfully."); // Display success message
+  useEffect(() => {
+    const getUsers = async () => {
+      await fetchUsers();
+    };
+    getUsers();
+  }, []);
+
+  const addUser = async (userData: {
+    username: string;
+    email: string;
+    password: string;
+  }) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_SERVICE_URL}/users`,
+        {
+          username: userData.username,
+          email: userData.email,
+          password: userData.password,
+          created_date: new Date().toISOString(),
+        },
+      );
+
+      // Update the users state with the new user
+      setUsers((prevUsers) => [...prevUsers, response.data]);
+      createMessage("success", "User added successfully.");
+      onClose(); // Close the modal
+      await fetchUsers(); // Fetch the updated list of users
+    } catch (err) {
+      console.error(err);
+      createMessage(
+        "error",
+        "Failed to add user. The user might already exist.",
+      );
+    }
   };
 
   const clearMessage = () => {
@@ -123,6 +155,19 @@ const App = () => {
     createMessage("info", "You have been logged out."); // Display success message
   };
 
+  const removeUser = async (userId: number) => {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_API_SERVICE_URL}/users/${userId}`,
+      );
+      await fetchUsers(); // Fetch the updated list of users
+      createMessage("success", "User removed successfully.");
+    } catch (err) {
+      console.error(err);
+      createMessage("error", "Failed to remove user. Please try again.");
+    }
+  };
+
   const validRefresh = async () => {
     const token = window.localStorage.getItem("refreshToken");
     if (token) {
@@ -167,8 +212,17 @@ const App = () => {
           path="/"
           element={
             <>
-              <AddUser addUserToList={addUserToList} />
-              <Users users={users} />
+              <Users
+                users={users}
+                onAddUser={onOpen}
+                removeUser={removeUser}
+                isAuthenticated={isAuthenticated()}
+              />
+              <AddUserModal
+                isOpen={isOpen}
+                onClose={onClose}
+                addUser={addUser}
+              />
             </>
           }
         />
