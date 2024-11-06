@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen, cleanup } from "../test-utils";
 import { describe, it, expect, afterEach, vi } from "vitest";
 import { ChakraProvider } from "@chakra-ui/react";
 import Message from "../../components/Message";

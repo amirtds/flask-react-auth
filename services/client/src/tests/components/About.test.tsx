@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup } from "../test-utils";
 import { it, expect, afterEach } from "vitest";
 import "@testing-library/jest-dom/vitest";
 

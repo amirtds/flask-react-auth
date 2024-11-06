@@ -3,26 +3,30 @@
 exports[`renders 1`] = `
 <DocumentFragment>
   <div
-    class="css-1cqsgvl"
+    class="css-zs4oec"
   >
     <div
-      class="chakra-stack css-1m5qyve"
+      class="chakra-stack css-42ki38"
     >
       <h1
-        class="chakra-heading css-0"
+        class="chakra-heading css-1jkx6l7"
       >
         About
       </h1>
       <hr
         aria-orientation="horizontal"
-        class="chakra-divider css-1upb9tn"
+        class="chakra-divider css-svjswr"
       />
       <p
-        class="chakra-text content css-1ezsviu"
+        class="chakra-text content css-i3jkqk"
       >
         Add something relevant here.
       </p>
     </div>
   </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
 </DocumentFragment>
 `;

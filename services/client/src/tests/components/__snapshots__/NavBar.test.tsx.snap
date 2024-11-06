@@ -3,19 +3,19 @@
 exports[`NavBar > NavBar renders properly 1`] = `
 <DocumentFragment>
   <div
-    class="css-tqkzpo"
+    class="css-1ggpwrh"
   >
     <div
-      class="css-q4hjtx"
+      class="css-19pkskf"
     >
       <div
         class="css-70qvj9"
       >
         <h1
-          class="chakra-heading navbar-item nav-title css-15ro776"
+          class="chakra-heading navbar-item nav-title css-1x64xs0"
         >
           <a
-            class="chakra-link css-3yqgza"
+            class="chakra-link css-2s4j8o"
             href="/"
           >
             Hello, World!
@@ -26,22 +26,22 @@ exports[`NavBar > NavBar renders properly 1`] = `
         class="css-17xejub"
       />
       <div
-        class="css-1du6rpu"
+        class="css-xv0w4j"
       >
         <a
-          class="chakra-link css-b80v07"
+          class="chakra-link css-fmj561"
           href="/about"
         >
           About
         </a>
         <a
-          class="chakra-link css-b80v07"
+          class="chakra-link css-fmj561"
           href="/register"
         >
           Register
         </a>
         <a
-          class="chakra-link css-b80v07"
+          class="chakra-link css-fmj561"
           href="/login"
         >
           Log In
@@ -49,7 +49,7 @@ exports[`NavBar > NavBar renders properly 1`] = `
       </div>
       <button
         aria-label="Toggle Navigation"
-        class="chakra-button css-8lrqwb"
+        class="chakra-button css-18c982u"
         type="button"
       >
         <svg
@@ -70,22 +70,22 @@ exports[`NavBar > NavBar renders properly 1`] = `
       style="overflow: hidden; display: none; opacity: 0; height: 0px;"
     >
       <div
-        class="chakra-stack css-p0xbc3"
+        class="chakra-stack css-12jrb58"
       >
         <a
-          class="chakra-link css-b80v07"
+          class="chakra-link css-fmj561"
           href="/about"
         >
           About
         </a>
         <a
-          class="chakra-link css-b80v07"
+          class="chakra-link css-fmj561"
           href="/register"
         >
           Register
         </a>
         <a
-          class="chakra-link css-b80v07"
+          class="chakra-link css-fmj561"
           href="/login"
         >
           Log In
@@ -93,5 +93,9 @@ exports[`NavBar > NavBar renders properly 1`] = `
       </div>
     </div>
   </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
 </DocumentFragment>
 `;

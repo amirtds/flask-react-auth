@@ -1,6 +1,6 @@
 import React from "react";
+import { render, screen, fireEvent, cleanup } from "../test-utils";
 import { it, expect, describe, vi, afterEach } from "vitest";
-import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import Users from "../../components/Users";
 import "@testing-library/jest-dom/vitest";
 

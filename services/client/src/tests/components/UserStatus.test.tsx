@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup, screen, waitFor, act } from "@testing-library/react";
+import { render, cleanup, screen, waitFor, act } from "../test-utils";
 import { describe, it, expect, vi, afterEach } from "vitest";
 import axios from "axios";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -23,12 +23,10 @@ describe("UserStatus", () => {
     });
 
     render(
-      <Router>
-        <UserStatus
-          accessToken="dummy-token"
-          isAuthenticated={mockIsAuthenticated}
-        />
-      </Router>,
+      <UserStatus
+        accessToken="dummy-token"
+        isAuthenticated={mockIsAuthenticated}
+      />
     );
 
     await waitFor(() => {
@@ -48,12 +46,10 @@ describe("UserStatus", () => {
     });
 
     const { asFragment } = render(
-      <Router>
-        <UserStatus
-          accessToken="dummy-token"
-          isAuthenticated={mockIsAuthenticated}
-        />
-      </Router>,
+      <UserStatus
+        accessToken="dummy-token"
+        isAuthenticated={mockIsAuthenticated}
+      />
     );
     await act(async () => {
       expect(axios).toHaveBeenCalled();

@@ -3,13 +3,13 @@
 exports[`AddUser > renders 1`] = `
 <DocumentFragment>
   <div
-    class="css-1cqsgvl"
+    class="css-zs4oec"
   >
     <div
-      class="css-yhr2jk"
+      class="css-16o4ti7"
     >
       <h2
-        class="chakra-heading css-735bf1"
+        class="chakra-heading css-8x0uut"
       >
         Register a User
       </h2>
@@ -18,21 +18,21 @@ exports[`AddUser > renders 1`] = `
       action="#"
     >
       <div
-        class="css-cme2f9"
+        class="css-u75su5"
       >
         <div
-          class="chakra-form-control css-jmbq56"
+          class="chakra-form-control css-5xb0ms"
           role="group"
         >
           <label
-            class="chakra-form__label css-1smud82"
+            class="chakra-form__label css-16lklr2"
             for="input-username"
             id="field-:r3:-label"
           >
             Username
             <span
               aria-hidden="true"
-              class="chakra-form__required-indicator css-0"
+              class="chakra-form__required-indicator css-1tfjd1n"
               role="presentation"
             >
               *
@@ -40,7 +40,7 @@ exports[`AddUser > renders 1`] = `
           </label>
           <input
             aria-required="true"
-            class="chakra-input css-0"
+            class="chakra-input css-1cjy4zv"
             id="input-username"
             name="username"
             placeholder="Enter a username"
@@ -49,18 +49,18 @@ exports[`AddUser > renders 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-jmbq56"
+          class="chakra-form-control css-5xb0ms"
           role="group"
         >
           <label
-            class="chakra-form__label css-1smud82"
+            class="chakra-form__label css-16lklr2"
             for="input-email"
             id="field-:r4:-label"
           >
             Email
             <span
               aria-hidden="true"
-              class="chakra-form__required-indicator css-0"
+              class="chakra-form__required-indicator css-1tfjd1n"
               role="presentation"
             >
               *
@@ -68,7 +68,7 @@ exports[`AddUser > renders 1`] = `
           </label>
           <input
             aria-required="true"
-            class="chakra-input css-0"
+            class="chakra-input css-1cjy4zv"
             id="input-email"
             name="email"
             placeholder="Enter an email address"
@@ -78,18 +78,18 @@ exports[`AddUser > renders 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-jmbq56"
+          class="chakra-form-control css-5xb0ms"
           role="group"
         >
           <label
-            class="chakra-form__label css-1smud82"
+            class="chakra-form__label css-16lklr2"
             for="input-password"
             id="field-:r5:-label"
           >
             Password
             <span
               aria-hidden="true"
-              class="chakra-form__required-indicator css-0"
+              class="chakra-form__required-indicator css-1tfjd1n"
               role="presentation"
             >
               *
@@ -97,7 +97,7 @@ exports[`AddUser > renders 1`] = `
           </label>
           <input
             aria-required="true"
-            class="chakra-input css-0"
+            class="chakra-input css-1cjy4zv"
             id="input-password"
             name="password"
             placeholder="Enter a password"
@@ -107,7 +107,7 @@ exports[`AddUser > renders 1`] = `
           />
         </div>
         <button
-          class="chakra-button css-lbflu4"
+          class="chakra-button css-1ilvzge"
           type="submit"
         >
           Submit
@@ -115,5 +115,9 @@ exports[`AddUser > renders 1`] = `
       </div>
     </form>
   </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
 </DocumentFragment>
 `;

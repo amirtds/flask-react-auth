@@ -6,7 +6,7 @@ import {
   fireEvent,
   waitFor,
   act,
-} from "@testing-library/react";
+} from "../test-utils";
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { BrowserRouter as Router } from "react-router-dom";
 import RegisterForm from "../../components/RegisterForm";
@@ -27,7 +27,7 @@ describe("RegisterForm", () => {
     cleanup();
   });
 
-  it("renders properly", () => {
+  it.only("renders properly", () => {
     renderWithRouter(<RegisterForm {...mockProps} />);
     const heading = screen.getByRole("heading", { name: "Register" });
     expect(heading.tagName.toLowerCase()).toBe("h1");

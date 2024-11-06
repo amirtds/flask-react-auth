@@ -41,6 +41,10 @@ exports[`Message Component Snapshots > matches snapshot for error message 1`] = 
     hidden=""
     id="__chakra_env"
   />
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
 </DocumentFragment>
 `;
 
@@ -81,6 +85,10 @@ exports[`Message Component Snapshots > matches snapshot for info message 1`] = `
       </div>
     </div>
   </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
   <span
     hidden=""
     id="__chakra_env"
@@ -146,6 +154,10 @@ exports[`Message Component Snapshots > matches snapshot for message with close b
     hidden=""
     id="__chakra_env"
   />
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
 </DocumentFragment>
 `;
 
@@ -186,6 +198,10 @@ exports[`Message Component Snapshots > matches snapshot for success message 1`] 
       </div>
     </div>
   </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
   <span
     hidden=""
     id="__chakra_env"

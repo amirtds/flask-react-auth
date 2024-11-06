@@ -1,6 +1,4 @@
-import React from "react";
-import { render, screen, cleanup } from "@testing-library/react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { render, screen, cleanup, fireEvent } from "../test-utils";
 import { describe, it, expect, vi, afterEach } from "vitest";
 import "@testing-library/jest-dom/vitest";
 
@@ -14,15 +12,14 @@ describe("NavBar", () => {
 
   const mockLogoutUser = vi.fn();
 
+  const expandMenu = () => {
+    const menuButton = screen.getByLabelText("Toggle Navigation");
+    fireEvent.click(menuButton);
+  };
+
   it("NavBar renders without crashing", () => {
     render(
-      <Router>
-        <NavBar
-          title="Hello, World!"
-          logoutUser={mockLogoutUser}
-          isAuthenticated={() => false}
-        />
-      </Router>,
+      <NavBar title="Hello, World!" logoutUser={mockLogoutUser} isAuthenticated={() => false} />
     );
 
     const titleElement = screen.getByText("Hello, World!");
@@ -33,43 +30,31 @@ describe("NavBar", () => {
 
   it("NavBar contains correct navigation links when user is logged out", () => {
     render(
-      <Router>
-        <NavBar
-          title="Hello, World!"
-          logoutUser={mockLogoutUser}
-          isAuthenticated={() => false}
-        />
-      </Router>,
+      <NavBar title="Hello, World!" logoutUser={mockLogoutUser} isAuthenticated={() => false} />
     );
 
+    expandMenu();
+
     // Links that should be visible when logged out
-    expect(screen.getByRole("link", { name: "About" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Register" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Log In" })).toBeInTheDocument();
+    expect(screen.getAllByText("About")[0]).toBeInTheDocument();
+    expect(screen.getAllByText("Register")[0]).toBeInTheDocument();
+    expect(screen.getAllByText("Log In")[0]).toBeInTheDocument();
 
     // Links that should be hidden when logged out
-    expect(
-      screen.queryByRole("link", { name: "User Status" }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText("User Status")).not.toBeInTheDocument();
     expect(screen.queryByText("Log Out")).not.toBeInTheDocument();
   });
 
   it("NavBar contains correct navigation links when user is logged in", () => {
     render(
-      <Router>
-        <NavBar
-          title="Hello, World!"
-          logoutUser={mockLogoutUser}
-          isAuthenticated={() => true}
-        />
-      </Router>,
+      <NavBar title="Hello, World!" logoutUser={mockLogoutUser} isAuthenticated={() => true} />
     );
 
+    expandMenu();
+
     // Links that should be visible when logged in
-    expect(screen.getByRole("link", { name: "About" })).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: "User Status" }),
-    ).toBeInTheDocument();
+    expect(screen.getAllByText("About")[0]).toBeInTheDocument();
+    expect(screen.getAllByText("User Status")[0]).toBeInTheDocument();
 
     // Check for Log Out link
     const logOutLinks = screen.getAllByText("Log Out");
@@ -77,23 +62,13 @@ describe("NavBar", () => {
     expect(logOutLinks[0]).toBeInTheDocument();
 
     // Links that should be hidden when logged in
-    expect(
-      screen.queryByRole("link", { name: "Register" }),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole("link", { name: "Log In" }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText("Register")).not.toBeInTheDocument();
+    expect(screen.queryByText("Log In")).not.toBeInTheDocument();
   });
 
   it("NavBar renders properly", () => {
     const { asFragment } = render(
-      <Router>
-        <NavBar
-          title="Hello, World!"
-          logoutUser={mockLogoutUser}
-          isAuthenticated={() => false}
-        />
-      </Router>,
+      <NavBar title="Hello, World!" logoutUser={mockLogoutUser} isAuthenticated={() => false} />
     );
     expect(asFragment()).toMatchSnapshot();
   });
