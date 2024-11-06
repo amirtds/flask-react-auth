@@ -19,7 +19,11 @@ describe("NavBar", () => {
 
   it("NavBar renders without crashing", () => {
     render(
-      <NavBar title="Hello, World!" logoutUser={mockLogoutUser} isAuthenticated={() => false} />
+      <NavBar
+        title="Hello, World!"
+        logoutUser={mockLogoutUser}
+        isAuthenticated={() => false}
+      />,
     );
 
     const titleElement = screen.getByText("Hello, World!");
@@ -30,7 +34,11 @@ describe("NavBar", () => {
 
   it("NavBar contains correct navigation links when user is logged out", () => {
     render(
-      <NavBar title="Hello, World!" logoutUser={mockLogoutUser} isAuthenticated={() => false} />
+      <NavBar
+        title="Hello, World!"
+        logoutUser={mockLogoutUser}
+        isAuthenticated={() => false}
+      />,
     );
 
     expandMenu();
@@ -47,7 +55,11 @@ describe("NavBar", () => {
 
   it("NavBar contains correct navigation links when user is logged in", () => {
     render(
-      <NavBar title="Hello, World!" logoutUser={mockLogoutUser} isAuthenticated={() => true} />
+      <NavBar
+        title="Hello, World!"
+        logoutUser={mockLogoutUser}
+        isAuthenticated={() => true}
+      />,
     );
 
     expandMenu();
@@ -68,7 +80,11 @@ describe("NavBar", () => {
 
   it("NavBar renders properly", () => {
     const { asFragment } = render(
-      <NavBar title="Hello, World!" logoutUser={mockLogoutUser} isAuthenticated={() => false} />
+      <NavBar
+        title="Hello, World!"
+        logoutUser={mockLogoutUser}
+        isAuthenticated={() => false}
+      />,
     );
     expect(asFragment()).toMatchSnapshot();
   });

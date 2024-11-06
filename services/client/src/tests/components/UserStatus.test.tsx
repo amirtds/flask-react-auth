@@ -26,7 +26,7 @@ describe("UserStatus", () => {
       <UserStatus
         accessToken="dummy-token"
         isAuthenticated={mockIsAuthenticated}
-      />
+      />,
     );
 
     await waitFor(() => {
@@ -49,7 +49,7 @@ describe("UserStatus", () => {
       <UserStatus
         accessToken="dummy-token"
         isAuthenticated={mockIsAuthenticated}
-      />
+      />,
     );
     await act(async () => {
       expect(axios).toHaveBeenCalled();
