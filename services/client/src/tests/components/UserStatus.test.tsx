@@ -2,7 +2,6 @@ import React from "react";
 import { render, cleanup, screen, waitFor, act } from "../test-utils";
 import { describe, it, expect, vi, afterEach } from "vitest";
 import axios from "axios";
-import { BrowserRouter as Router } from "react-router-dom";
 
 import UserStatus from "../../components/UserStatus";
 

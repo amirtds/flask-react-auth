@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, cleanup, fireEvent } from "../test-utils";
 import { describe, it, expect, vi, afterEach } from "vitest";
 import "@testing-library/jest-dom/vitest";
